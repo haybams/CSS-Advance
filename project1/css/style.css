@@ -1,0 +1,191 @@
+/*
+COLORS:
+
+Light green: #7ed56f
+Medium green: #55c57a
+Dark green: #28b485
+
+*/
+
+/* there are two forms of animation, the easy one is transition and the other one is the keyframe properties */
+
+/* basic reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+/* all of these will be inherited */
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #777;
+  padding: 30px;
+}
+/*
+note: to specify graident we always use the background image property
+we want the gradient to be on top so it has to be the first attribute that we specify b4 the image
+*/
+.header {
+  height: 95vh; /*means height of the element should be 95% of the view pirt height*/
+  background-image: linear-gradient(
+    to right bottom,
+   rgba(126, 213, 111, 0.8), 
+   rgba(40, 180, 131, 0.8)) , 
+   url(../img/hero.jpg);
+  background-size: cover; /* always tries to fit the image inside the element viewport or box  */
+  background-position: top; /* it ensures d top of d image stays at d top of d container&remain d same no matter how d view port changes */
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  position: relative;
+}
+
+.logo-box {
+  position: absolute;
+  top: 40px; /* the direction will be relative to the parent element that has a position set to relative..in this case.. */
+  left: 40px; /*..d parent element is d header element wit d header class, so dis is d reference 4rm which top,left starts to count*/
+}
+
+.logo {
+  height: 35px; /*set d height&d width will be figured out by d browser or set d width&d height will b firgured out by d browser */
+}
+
+.text-box {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);/* this 50% are now no longer in relation to the parent element but of(multiply) the element itself */
+  text-align: center;
+}
+
+.heading-primary {
+  color: #fff;
+  text-transform: uppercase;
+  backface-visibility: hidden; /*  just a hack: prevents the animation from shaking at the end
+  the backface visibility actually determines if the back part of an element when we transform it is visible or
+  hidden for the user.  */
+  margin-bottom: 60px;
+}
+
+.heading-primary-main {
+ display: block; /* block level element occupies the entire width that they have available and they creates line breaks after and before them */
+ font-size: 60px;
+ font-weight: 400;
+ letter-spacing: 35px;
+ animation-name: moveInLeft;
+ animation-duration: 1s;
+ animation-timing-function: ease-out; /*read doc: https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function */
+ /* 
+ animation-delay: 3s; 
+ animation-iteration-count: 3;
+ */
+}
+
+.heading-primary-sub {
+  display: block;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 17.4px;
+  animation: moveInRight 1s ease-out;
+}
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px)
+  }
+
+  80% {
+    transform: translateX(10px);
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px)
+  }
+
+  80% {
+    transform: translateX(-10px);
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(30px)
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+/* to center this button, it is an inline block so it is treated as if it is a text so set the text align property of 
+the parent center, the parent in this case is the class text-box */
+.btn:link, 
+.btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 40px;
+  display: inline-block; /* always do this if u want 2 give some padding, or height or width 2 some element(I think inline element) */
+  border-radius: 100px;
+  transition: all .2s; /* the transition property is on the initial state i.e .btn:link */
+  position: relative;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-white {
+  background-color: #fff;
+  color: #777;
+}
+
+/* adds a virtual element after the element that we are selecting */
+.btn::after {
+  content: '';
+  display: inline-block; /* content and display property are required for it to work */
+  height: 100%;  /* pseudo element is a child of it element e.g the pseudo element is a child of .btn so the height or  */
+  width: 100%;  /* is relative to the parent, i.e the width for instance is 100% of .btn */
+  border-radius: 100px;
+  position: absolute; /* puts the pseudo element on top of our actual button */
+  top: 0;
+  left: 0;
+  z-index: -1; /* specifies the position of an element if they are on top one another */
+  transition: all .4s;
+}
+
+.btn-white::after {
+  background-color: #fff;
+}
+
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0
+}
+
+.btn-animated {
+  animation: moveInBottom .5s ease-out .75s;
+  animation-fill-mode: backwards /* applies the style of the 0% before the animation starts */
+}
+
