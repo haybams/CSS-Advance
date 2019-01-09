@@ -10,10 +10,16 @@ Dark green: #28b485
 /* there are two forms of animation, the easy one is transition and the other one is the keyframe properties */
 
 /* basic reset */
-* {
+*::after, /* this enables the after and beofre element to also get the declared behaviour and not just the real element alone */
+*::before {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: inherit; /* every element should inherit the box sizing */
+}
+
+/* rem is calculated in realtion to the root font size */
+html {
+  font-size: 62.5%; /* root font size */
 }
 
 
@@ -21,10 +27,11 @@ Dark green: #28b485
 body {
   font-family: "Lato", sans-serif;
   font-weight: 400;
-  font-size: 16px;
+  /* font-size: 16px; */
   line-height: 1.7;
   color: #777;
-  padding: 30px;
+  padding: 3rem;
+  box-sizing: border-box;
 }
 /*
 note: to specify graident we always use the background image property
@@ -45,12 +52,12 @@ we want the gradient to be on top so it has to be the first attribute that we sp
 
 .logo-box {
   position: absolute;
-  top: 40px; /* the direction will be relative to the parent element that has a position set to relative..in this case.. */
-  left: 40px; /*..d parent element is d header element wit d header class, so dis is d reference 4rm which top,left starts to count*/
+  top: 4rem; /* the direction will be relative to the parent element that has a position set to relative..in this case.. */
+  left: 4rem; /*..d parent element is d header element wit d header class, so dis is d reference 4rm which top,left starts to count*/
 }
 
 .logo {
-  height: 35px; /*set d height&d width will be figured out by d browser or set d width&d height will b firgured out by d browser */
+  height: 3.5rem; /*set d height&d width will be figured out by d browser or set d width&d height will b firgured out by d browser */
 }
 
 .text-box {
@@ -67,14 +74,14 @@ we want the gradient to be on top so it has to be the first attribute that we sp
   backface-visibility: hidden; /*  just a hack: prevents the animation from shaking at the end
   the backface visibility actually determines if the back part of an element when we transform it is visible or
   hidden for the user.  */
-  margin-bottom: 60px;
+  margin-bottom: 6rem;
 }
 
 .heading-primary-main {
  display: block; /* block level element occupies the entire width that they have available and they creates line breaks after and before them */
- font-size: 60px;
+ font-size: 6rem;
  font-weight: 400;
- letter-spacing: 35px;
+ letter-spacing: 3.5rem;
  animation-name: moveInLeft;
  animation-duration: 1s;
  animation-timing-function: ease-out; /*read doc: https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function */
@@ -86,50 +93,53 @@ we want the gradient to be on top so it has to be the first attribute that we sp
 
 .heading-primary-sub {
   display: block;
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: 700;
-  letter-spacing: 17.4px;
+  letter-spacing: 1.75rem;
   animation: moveInRight 1s ease-out;
 }
 
 @keyframes moveInLeft {
   0% {
     opacity: 0;
-    transform: translateX(-100px)
+    transform: translateX(-10rem)
   }
 
   80% {
-    transform: translateX(10px);
+    transform: translateX(1rem);
   }
 
   100% {
     opacity: 1;
+    transform: translate(0)
   }
 }
 
 @keyframes moveInRight {
   0% {
     opacity: 0;
-    transform: translateX(100px)
+    transform: translateX(10rem)
   }
 
   80% {
-    transform: translateX(-10px);
+    transform: translateX(-1rem);
   }
 
   100% {
     opacity: 1;
+    transform: translate(0)
   }
 }
 
 @keyframes moveInBottom {
   0% {
     opacity: 0;
-    transform: translateY(30px)
+    transform: translateY(3rem)
   }
 
   100% {
     opacity: 1;
+    transform: translate(0)
   }
 }
 
@@ -139,21 +149,22 @@ the parent center, the parent in this case is the class text-box */
 .btn:visited {
   text-transform: uppercase;
   text-decoration: none;
-  padding: 15px 40px;
+  padding: 1.5rem 4rem;
   display: inline-block; /* always do this if u want 2 give some padding, or height or width 2 some element(I think inline element) */
-  border-radius: 100px;
+  border-radius: 10rem;
   transition: all .2s; /* the transition property is on the initial state i.e .btn:link */
   position: relative;
+  font-size: 1.6rem;
 }
 
 .btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
 }
 
 .btn:active {
   transform: translateY(-1px);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
 }
 
 .btn-white {
@@ -167,7 +178,7 @@ the parent center, the parent in this case is the class text-box */
   display: inline-block; /* content and display property are required for it to work */
   height: 100%;  /* pseudo element is a child of it element e.g the pseudo element is a child of .btn so the height or  */
   width: 100%;  /* is relative to the parent, i.e the width for instance is 100% of .btn */
-  border-radius: 100px;
+  border-radius: 10rem;
   position: absolute; /* puts the pseudo element on top of our actual button */
   top: 0;
   left: 0;
