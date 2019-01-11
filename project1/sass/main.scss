@@ -9,11 +9,16 @@
 
 @import "components/button";
 
+@import "layout/grid";
 @import "layout/header";
 
 @import "pages/home";  
 
 
 /* there are two forms of animation, the easy one is transition and the other one is the keyframe properties */
+
+/* After you float the height of the element you floated bcomes zero and the next element becomes very close or tightly nitted
+to the floated element.. this is the case cos when you float all of the child element of the floated element are floated so
+the height collapses, you fix this by using the clearfix hack  */
 
 

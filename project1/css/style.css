@@ -1,3 +1,8 @@
+/* After you float the height of the element you floated bcomes zero and the next element becomes very close or tightly nitted
+to the floated element.. this is the case cos when you float all of the child element of the floated element are floated so
+the height collapses, you fix this by using the clearfix hack  */
+/* what the clearfix does is to append a pseudo element after the element which will then clear the float, i think the clearfic
+property is on the parent, just a thought */
 @keyframes moveInLeft {
   0% {
     opacity: 0;
@@ -81,7 +86,7 @@ body {
     animation: moveInRight 1s ease-out; }
 
 /* to center this button, it is an inline block so it is treated as if it is a text so set the text align property of 
-the parent center, the parent in this case is the class text-box */
+the parent to center, the parent in this case is the class text-box */
 /* inline-block will allow the box model to work on an inline element as if they were block level element */
 .btn {
   /* adds a virtual element after the element that we are selecting */ }
@@ -130,6 +135,44 @@ the parent center, the parent in this case is the class text-box */
     animation: moveInBottom .5s ease-out .75s;
     animation-fill-mode: backwards; }
 
+.row {
+  max-width: 114rem;
+  /* max-width means that if we have enough available space then it will have the width that we specify
+  but if there is not enough width, basically if the viewport is smaller than the width that we specifed(114rems) then it will
+  simply fill 100% of the available spce */
+  background-color: #eee;
+  margin: 0 auto;
+  /* trick to center block element inside of another block element */ }
+  .row:not(:last-child) {
+    margin-bottom: 8rem; }
+  .row:after {
+    content: "";
+    display: table;
+    /* we use table cos it is the way it works for clearfix */
+    clear: both; }
+  .row [class^="col-"] {
+    background-color: orangered;
+    float: left; }
+    .row [class^="col-"]:not(:last-child) {
+      margin-right: 6rem; }
+  .row .col-1-of-2 {
+    width: calc((100% - 6rem) / 2);
+    /* the hastag&curly braces cos the calc requires it for calculation in sass */
+    background-color: orangered;
+    float: left; }
+    .row .col-1-of-2:not(:last-child) {
+      margin-right: 6rem; }
+  .row .col-1-of-3 {
+    width: calc((100% - 2 * 6rem) / 3); }
+  .row .col-2-of-3 {
+    width: calc(2 * ((100% - 2 * 6rem) / 3) + 6rem); }
+  .row .col-2-of-4 {
+    width: calc(2 * ((100% - 3 * 6rem) / 4) + 6rem); }
+  .row .col-3-of-4 {
+    width: calc(3 * ((100% - 3 * 6rem) / 4) + 2* 6rem); }
+  .row .col-1-of-4 {
+    width: calc((100% - 3 * 6rem) / 4); }
+
 /*
 note: to specify graident we always use the background image property
 we want the gradient to be on top so it has to be the first attribute that we specify b4 the image
@@ -162,3 +205,6 @@ we want the gradient to be on top so it has to be the first attribute that we sp
     text-align: center; }
 
 /* there are two forms of animation, the easy one is transition and the other one is the keyframe properties */
+/* After you float the height of the element you floated bcomes zero and the next element becomes very close or tightly nitted
+to the floated element.. this is the case cos when you float all of the child element of the floated element are floated so
+the height collapses, you fix this by using the clearfix hack  */

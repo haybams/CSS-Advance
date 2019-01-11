@@ -1,0 +1,13 @@
+/* After you float the height of the element you floated bcomes zero and the next element becomes very close or tightly nitted
+to the floated element.. this is the case cos when you float all of the child element of the floated element are floated so
+the height collapses, you fix this by using the clearfix hack  */
+
+/* what the clearfix does is to append a pseudo element after the element which will then clear the float, i think the clearfic
+property is on the parent, just a thought */
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table; /* we use table cos it is the way it works for clearfix */
+    clear: both;
+  }
+} 
