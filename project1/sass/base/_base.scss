@@ -1,0 +1,18 @@
+/* basic reset */ 
+*::after, /* this enables the after and beofre element to also get the declared behaviour and not just the real element alone */
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; /* every element should inherit the box sizing */
+}
+
+/* rem is calculated in realtion to the root font size */
+html {
+  // This defines what 1rem is
+  font-size: 62.5%; /* root font size */
+}
+
+/* all of these will be inherited */
+body {
+  box-sizing: border-box;
+}

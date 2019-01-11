@@ -1,0 +1,59 @@
+/* to center this button, it is an inline block so it is treated as if it is a text so set the text align property of 
+the parent center, the parent in this case is the class text-box */
+/* inline-block will allow the box model to work on an inline element as if they were block level element */    
+
+.btn {
+  &:link, 
+  &:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    display: inline-block; /* always do this if u want 2 give some padding, or height or width 2 some element(I think inline element) */
+    border-radius: 10rem;
+    transition: all .2s; /* the transition property is on the initial state i.e .btn:link */
+    position: relative;
+    font-size: 1.6rem;
+  } 
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+    &::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0
+    }
+  }
+  
+  &:active {
+    transform: translateY(-1px);
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+  }
+  
+  &--white {
+    background-color: $color-white;
+    color: $color-grey-dark;
+    &::after {
+      background-color: #fff;
+    }
+  }
+  
+  /* adds a virtual element after the element that we are selecting */
+  &::after {
+    content: '';
+    display: inline-block; /* content and display property are required for it to work */
+    height: 100%;  /* pseudo element is a child of it element e.g the pseudo element is a child of .btn so the height or  */
+    width: 100%;  /* is relative to the parent, i.e the width for instance is 100% of .btn */
+    border-radius: 10rem;
+    position: absolute; /* puts the pseudo element on top of our actual button */
+    top: 0;
+    left: 0;
+    z-index: -1; /* specifies the position of an element if they are on top one another */
+    transition: all .4s;
+  }
+  
+  &--animated {
+    animation: moveInBottom .5s ease-out .75s;
+    animation-fill-mode: backwards /* applies the style of the 0% before the animation starts */
+  }
+  
+}

@@ -1,0 +1,36 @@
+/*
+note: to specify graident we always use the background image property
+we want the gradient to be on top so it has to be the first attribute that we specify b4 the image
+*/
+
+
+.header {
+  height: 95vh; /*means height of the element should be 95% of the view pirt height*/
+  background-image: linear-gradient(
+    to right bottom,
+   rgba($color-primary-light, 0.8), 
+   rgba($color-primary-dark, 0.8)), 
+   url(../img/hero.jpg);
+  background-size: cover; /* always tries to fit the image inside the element viewport or box  */
+  background-position: top; /* it ensures d top of d image stays at d top of d container&remain d same no matter how d view port changes */
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  position: relative;
+
+  &__logo-box {
+    position: absolute;
+    top: 4rem; /* the direction will be relative to the parent element that has a position set to relative..in this case.. */
+    left: 4rem; /*..d parent element is d header element wit d header class, so dis is d reference 4rm which top,left starts to count*/
+  }
+
+  &__logo {
+    height: 3.5rem; /*set d height&d width will be figured out by d browser or set d width&d height will b firgured out by d browser */
+  }
+  
+  &__text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);/* this 50% are now no longer in relation to the parent element but of(multiply) the element itself */
+    text-align: center;
+  }
+}
