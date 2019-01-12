@@ -2,6 +2,7 @@
   max-width: $grid-width; /* max-width means that if we have enough available space then it will have the width that we specify
   but if there is not enough width, basically if the viewport is smaller than the width that we specifed(114rems) then it will
   simply fill 100% of the available spce */
+  background-color: #eee;
   margin: 0 auto; /* trick to center block element inside of another block element */
   
   &:not(:last-child) {
@@ -11,6 +12,7 @@
   @include clearfix;
 
   [class^="col-"] {
+    background-color: orangered;
     float: left;
 
     &:not(:last-child) {
@@ -20,6 +22,7 @@
 
   .col-1-of-2 {
     width: calc((100% - #{$gutter-horizontal}) / 2); /* the hastag&curly braces cos the calc requires it for calculation in sass */
+    background-color: orangered;
     float: left;
 
     &:not(:last-child) {
